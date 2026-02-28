@@ -23,32 +23,21 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float y = Input.GetAxis("Vertical");
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
 
         Vector2 motion = new Vector2(x, y) * moveforce * Time.fixedDeltaTime;
         rb.velocity = motion;
 
+        anim.SetInteger("y", (int) y);
+        anim.SetInteger("x", (int)x);
 
-        if(y > 0)
+        if ((int)x != 0)
         {
-            anim.SetInteger("y", 1);
-                
+            anim.SetInteger("y", 0);
         }
-        if (y < 0)
-        {
-            anim.SetInteger("y",-1);
 
-        }
-        if (x > 0)
-        {
-            anim.SetInteger("x", 1);
 
-        }
-        if (x < 0)
-        {
-            anim.SetInteger("x",-1);
 
-        }
     }
 }
